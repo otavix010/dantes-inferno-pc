@@ -1,3 +1,11 @@
 titulo=Dante's Inferno
 versao=Dante's Inferno (USA, Europe)
 sha1_xex=98bff97ab205fc9893bf49e8c79b26711f6b18db
+title_id=454108CF
+cor=175,35,25
+marca=Electronic Arts
+iso_gb=7
+fps=60
+fps_original=60
+fps_padrao=60
+idiomas=1,5,4
