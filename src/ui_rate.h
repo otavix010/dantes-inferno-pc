@@ -53,7 +53,7 @@ inline uint16_t* Pad16(uint8_t* base, uint32_t address) { return rex::memory::Gu
 inline bool Is(uint8_t* base, uint32_t message, uint32_t object) {
   return Load32(base, message) == Load32(base, object);
 }
-inline bool Throttled() { return REXCVAR_GET(fps) > 60; }
+inline bool Throttled() { return TargetFps() > 60; }  // unlimited (0) too
 
 // on each SystemTick above 60: whether 1/60 s of real time has gathered
 inline bool Due() {
