@@ -12,7 +12,7 @@ O jeito mais fácil de jogar é pelo [Otavix Launcher](https://github.com/otavix
 
 | | Xbox 360 | Port |
 |--|--|--|
-| Taxa de quadros | 60 fps | **60** fps (120 em teste) |
+| Taxa de quadros | 60 fps | **60** ou **120** fps (quadros reais; a interface fica a 60) |
 | Resolução interna | 720p | 720p, **1440p** ou 4K |
 | Ampliação para a tela | — | AMD FSR 1, AMD CAS, FSR 3 temporal (experimental) ou bilinear, com nitidez ajustável |
 | Anti-aliasing | o do jogo | o do jogo, mais FXAA opcional |
@@ -25,7 +25,7 @@ DLSS e XeSS não entram: os dois precisam de vetores de movimento, que os jogos 
 
 - Do menu ao combate: 15 minutos no navio em chamas a 60 fps estáveis em 2x (GPU em 29%).
 - Som funcionando.
-- 120 fps ainda não: a interface (Flash da EA) avança por quadro e correria em dobro.
+- 120 fps: o jogo avança 1/120 por quadro (a taxa e o passo ficam lado a lado na memória do jogo), e a interface, presa a 60 Hz, pulsa no mesmo ritmo que a 60 fps (0,83 s medidos nos dois casos). Menus, pausa e toques de 10 ms funcionam.
 
 ## Gerar à mão (sem o launcher)
 
@@ -44,7 +44,7 @@ Ficam em `dantesinferno.toml` ao lado do executável, ou no arquivo indicado pel
 
 | Opção | Valores | Padrão |
 |--|--|--|
-| `fps` | 60 (120 em teste) | 60 |
+| `fps` | 60, 120 | 60 |
 | `resolution_scale` | 1 (720p), 2 (1440p), 3 (4K) | 2 |
 | `filtro` | `fsr`, `cas`, `fsr3` (temporal, experimental), `bilinear` | `fsr` |
 | `nitidez` | 0 a 100 | 70 |
@@ -62,7 +62,8 @@ Ficam em `dantesinferno.toml` ao lado do executável, ou no arquivo indicado pel
 ## Como funciona
 
 - `config/funcoes.toml`: as funções que a análise estática não acha sozinha: chamadas só por ponteiro (nos dados ou com o endereço montado no código) e uma função cuja análise começava no meio de um laço. `config/ganchos.toml`: os ganchos no código do jogo. `config/jogo.txt`: a versão do jogo que o gerador confere.
-- `src/frame_rate.h`: a taxa de quadros. O jogo já roda a 60 no Xbox 360, sincronizado ao vblank; acima de 60, o vblank do console emulado acelera.
+- A taxa de quadros (`src/port/frame_rate.h`): o jogo já roda a 60 no Xbox 360, sincronizado ao vblank; acima de 60, o vblank do console emulado acelera, e o jogo, que lê a taxa ao iniciar, passa a avançar 1/taxa por quadro.
+- `src/ui_rate.h`: a interface (o Flash da EA, "APT") avança um passo por quadro e correria em dobro a 120. Os dois tratadores dela (telas e filmes) só rodam a cada 1/60 s de tempo real, decididos juntos, e enquanto rodam o estado anterior dos botões é o do último quadro dela, para nenhum aperto se perder. A técnica é a que o [hells-gate-recomp](https://github.com/florinp93/hells-gate-recomp) documenta (`docs/frame_rate.md`); os endereços foram achados de novo nesta versão do jogo.
 - `src/port/`: a base comum dos ports de Xbox 360 (a mesma em todos): opções de imagem, contador de fps, leitura da `.iso`, a trava que corrige uma corrida na entrada de controles da ReXGlue, `falha.log` com a pilha em caso de falha.
 
 Para desenvolver: `build.cmd` compila; `scripts/rodar.py` roda numa janela com prints, o fps de cada segundo e um controle roteirizado (`PORT_PAD`; para começar um jogo novo: `--pad 26:START,35-180@4:A`); `scripts/tecla.py` aperta botões no jogo em execução; `scripts/varrer_ponteiros.py` e `scripts/desmontar.py` ajudam a achar funções.
@@ -71,6 +72,7 @@ Para desenvolver: `build.cmd` compila; `scripts/rodar.py` roda numa janela com p
 
 - [ReXGlue SDK](https://github.com/rexglue/rexglue-sdk): recompilador estático e runtime de Xbox 360 (BSD-3).
 - [Xenia](https://github.com/xenia-project/xenia): o emulador em que o runtime se baseia (BSD-3).
+- [hells-gate-recomp](https://github.com/florinp93/hells-gate-recomp), de florinp93: a documentação de como a interface do Dante's Inferno avança, que guiou a técnica dos 120 fps (nenhum código dele foi usado).
 
 Dante's Inferno é marca da Electronic Arts. Este projeto não tem relação com a EA nem com a Microsoft.
 
