@@ -1,0 +1,3 @@
+titulo=Dante's Inferno
+versao=Dante's Inferno (USA, Europe)
+sha1_xex=98bff97ab205fc9893bf49e8c79b26711f6b18db
