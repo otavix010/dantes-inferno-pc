@@ -1,5 +1,12 @@
 # Dante's Inferno: hooks in the game's code (src/)
 
+# The game's setjmp and longjmp (its CRT's, with the VMX128 registers): the runtime's own pair stands in for them.
+# Run as plain code, longjmp only returned to its caller with the registers of the setjmp, so the JPEG decoder's
+# error exit (the save statue's thumbnail, SetThumbnailIndex) went back into the decoder's marker loop with its object
+# pointer gone: a read of guest 0x1A4 and the game closed (0xC0000005) on the first Beatrice statue.
+setjmp_address = 0x82701240
+longjmp_address = 0x82700CE0
+
 # A frame handed to the GPU (right after the game's VdSwap): counts the frame rate (src/port/fps_overlay.h)
 [[midasm_hook]]
 address = 0x8265FC58
