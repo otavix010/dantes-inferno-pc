@@ -10,3 +10,4 @@ fps_original=60
 fps_padrao=60
 idiomas=1,5,4
 preset_4k=3
+preset_1080=2
