@@ -268,7 +268,7 @@ function Achar-Extraido([string]$pasta) {
     $acima = $pasta
     for ($i = 0; $i -le 2 -and $acima; $i++) {
         if (Test-Path -LiteralPath (Join-Path $acima 'default.xex') -PathType Leaf) { return @($acima) }
-        $acima = Split-Path -LiteralPath $acima -Parent
+        $acima = [IO.Path]::GetDirectoryName($acima)
     }
     return @(Get-ChildItem -LiteralPath $pasta -File -Recurse -Depth 2 -Filter 'default.xex' -ErrorAction SilentlyContinue |
              ForEach-Object { $_.DirectoryName })

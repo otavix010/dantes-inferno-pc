@@ -140,6 +140,8 @@ class PortApp : public rex::ReXApp {
   // the generator alone, the launcher passed an empty --iso and the next argument was taken for it)
   static std::string IsoPath() {
     std::string iso = REXCVAR_GET(iso);
+    // a folder ending with its separator, quoted without doubling it ("F:\"): the quote came in with the path
+    while (!iso.empty() && iso.back() == '"') iso.pop_back();
     if (!iso.empty() && iso.rfind("--", 0) != 0) return iso;
     std::string line = GeneratorIso();
     if (!line.empty()) REXLOG_INFO("iso: none given ('{}'); the generator's: {}", iso, line);
