@@ -4,6 +4,14 @@ O Otavix Launcher mostra este arquivo na página "Novidades" do jogo. Cada atual
 "## <data> · <versão>" e o texto em português (### pt), inglês (### en) e, quando houver, espanhol (### es).
 As mais novas ficam em cima.
 
+## 12/11/2026 · gerador
+### pt
+- **Edição do jogo não reconhecida:** quando o default.xex não é a versão do port, o gerador agora registra no log o formato, a versão e o hash do código do executável, para identificarmos a edição sem precisar do arquivo.
+### en
+- **Unrecognized game edition:** when the default.xex is not the port's version, the generator now logs the executable's format, version and code hash, so we can identify the edition without needing the file.
+### es
+- **Edición del juego no reconocida:** cuando el default.xex no es la versión del port, el generador ahora registra en el log el formato, la versión y el hash del código del ejecutable, para identificar la edición sin necesitar el archivo.
+
 ## 11/11/2026 · engine 1.0.0
 ### pt
 - **Otavix Engine 360 1.0.0:** o port agora roda sobre a engine própria da Otavix, que substitui o runtime de origem (ReXGlue/Xenia). O launcher refaz a tradução e a compilação na atualização; o jogo e os saves continuam onde estavam.
