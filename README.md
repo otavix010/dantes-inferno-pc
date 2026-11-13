@@ -56,7 +56,7 @@ DLSS e XeSS não entram: os dois precisam de vetores de movimento, que os jogos 
 
 ## Estado dos testes
 
-- Do menu ao combate: 15 minutos no navio em chamas a 60 fps estáveis em 2x (GPU em 29%).
+- Jogo novo (Clássico), Acre em chamas, na engine 1.0.1: cutscene, combate e caminhada por 7,5 minutos a 60 fps estáveis em 2x (média 60,6; mínimo 55 por um segundo; GPU em 27%).
 - Som funcionando.
 - 120 fps: o jogo avança 1/120 por quadro (a taxa e o passo ficam lado a lado na memória do jogo), e a interface, presa a 60 Hz, pulsa no mesmo ritmo que a 60 fps (0,83 s medidos nos dois casos). Menus, pausa e toques de 10 ms funcionam.
 
@@ -79,11 +79,11 @@ DLSS e XeSS não entram: os dois precisam de vetores de movimento, que os jogos 
 
 ## Desempenho medido
 
-FPS de jogo. **Só colocamos o que foi medido**, e com **um jogo só rodando** (com outra carga junto, o desempenho pode cair bastante). Foram medidos no runtime anterior; na engine 1.0.0 a saída da GPU saiu **idêntica quadro a quadro** nos 4 ports e o boot não falhou, mas os FPS **ainda não foram remedidos**.
+FPS de jogo. **Só colocamos o que foi medido**, e com **um jogo só rodando** (com outra carga junto, o desempenho pode cair bastante). Os números de 2x são da engine 1.0.1 (a saída da GPU é **idêntica quadro a quadro** à da 1.0.0 nos 4 ports); o que veio do runtime anterior está indicado como tal.
 
 | Máquina | CPU | GPU | FPS |
 |---|---|---|---|
-| **PC 1** | Ryzen 7 9800X3D | RTX 5080 | 2x: 15 min no navio em chamas a **60 estáveis** (GPU em 29%); 120 funciona (a interface fica presa a 60) |
+| **PC 1** | Ryzen 7 9800X3D | RTX 5080 | 2x: início do jogo (Acre em chamas, combate) **60 estáveis** (média 60,6; GPU em 27%) na engine 1.0.1; 120 funciona (a interface fica presa a 60), medido no runtime anterior |
 | **PC 2** | Core i5-11400F | RX 9060 XT | 60 em 97% do trecho da igreja até a lava; só a transição da catedral cai (12–30) (04/11) |
 | **Notebook** | Core i5-10300H (4/8) | GTX 1650 | não medido |
 | **Portátil** | Legion Go S (Linux) | Radeon 780M | não suportado |
