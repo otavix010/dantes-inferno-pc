@@ -4,13 +4,13 @@ O Otavix Launcher mostra este arquivo na página "Novidades" do jogo. Cada atual
 "## <data> · <versão>" e o texto em português (### pt), inglês (### en) e, quando houver, espanhol (### es).
 As mais novas ficam em cima.
 
-## 12/11/2026 · gerador
+## 13/11/2026 · gerador
 ### pt
-- **Edição do jogo não reconhecida:** quando o default.xex não é a versão do port, o gerador agora registra no log o formato, a versão e o hash do código do executável, para identificarmos a edição sem precisar do arquivo.
+- **Cópias com o default.xex regravado:** algumas cópias do jogo trazem o default.xex regravado (por exemplo, só decifrado), com o mesmo código da versão do port. O gerador recusava essas cópias; agora confere o código do executável e as aceita.
 ### en
-- **Unrecognized game edition:** when the default.xex is not the port's version, the generator now logs the executable's format, version and code hash, so we can identify the edition without needing the file.
+- **Copies with a rewritten default.xex:** some copies of the game come with the default.xex rewritten (for example, only decrypted), with the same code as the port's version. The generator used to refuse these copies; it now checks the executable's code and accepts them.
 ### es
-- **Edición del juego no reconocida:** cuando el default.xex no es la versión del port, el generador ahora registra en el log el formato, la versión y el hash del código del ejecutable, para identificar la edición sin necesitar el archivo.
+- **Copias con el default.xex reescrito:** algunas copias del juego traen el default.xex reescrito (por ejemplo, solo descifrado), con el mismo código que la versión del port. El generador rechazaba esas copias; ahora comprueba el código del ejecutable y las acepta.
 
 ## 13/11/2026 · engine 1.0.2
 ### pt
@@ -28,6 +28,14 @@ As mais novas ficam em cima.
 - **Envío a la tarjeta gráfica en paralelo:** los comandos de cada cuadro ahora se envían a la tarjeta gráfica desde un hilo propio, mientras el motor ya prepara el cuadro siguiente.
 - **Imágenes que el juego no lee:** el motor deja de copiar a la memoria del juego las imágenes renderizadas que este no lee. Cuando el juego vuelve a leer una de ellas, la copia vuelve al instante.
 - **Dibujos de pantalla completa:** antes de un dibujo que cubre toda la pantalla, el motor deja de copiar la parte de la imagen que ese dibujo va a sobrescribir.
+
+## 12/11/2026 · gerador
+### pt
+- **Edição do jogo não reconhecida:** quando o default.xex não é a versão do port, o gerador agora registra no log o formato, a versão e o hash do código do executável, para identificarmos a edição sem precisar do arquivo.
+### en
+- **Unrecognized game edition:** when the default.xex is not the port's version, the generator now logs the executable's format, version and code hash, so we can identify the edition without needing the file.
+### es
+- **Edición del juego no reconocida:** cuando el default.xex no es la versión del port, el generador ahora registra en el log el formato, la versión y el hash del código del ejecutable, para identificar la edición sin necesitar el archivo.
 
 ## 12/11/2026 · engine 1.0.1
 ### pt

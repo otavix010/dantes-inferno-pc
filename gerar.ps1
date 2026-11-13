@@ -324,6 +324,7 @@ function Descrever-Xex([string]$xex) {
         $sha = [Security.Cryptography.SHA1]::Create()
         $h = ([BitConverter]::ToString($sha.ComputeHash($imagem)) -replace '-', '').ToLower()
         $linhas.Add("imagem decodificada: $($imagem.Length) bytes, $pe, SHA-1 $h")
+        $script:SHA1_IMAGEM_LIDA = $h
         if ($JOGO['sha1_imagem']) {
             $linhas.Add($(if ($h -eq $JOGO['sha1_imagem']) { 'o código é o MESMO da versão do port (só o arquivo .xex foi regravado)' }
                           else { "o código é de outra edição (a do port: $($JOGO['sha1_imagem']))" }))
@@ -443,10 +444,17 @@ Etapa 2 '2_jogo' {
     $sha = (Get-FileHash $lido -Algorithm SHA1).Hash.ToLower()
     if ($sha -ne $JOGO['sha1_xex']) {
         # what this default.xex is, in the step's log (and so in a report): another edition, or the same game re-encoded
+        $script:SHA1_IMAGEM_LIDA = $null
         try { foreach ($l in (Descrever-Xex $lido)) { Anotar $script:LOG "xex: $l"; Msg "xex: $l" } }
         catch { Anotar $script:LOG "xex: não foi possível descrever ($_)" }
-        Remove-Item $lido -ErrorAction SilentlyContinue
-        throw "este jogo não é a versão do port ($($JOGO['versao']), default.xex SHA-1 $($JOGO['sha1_xex']); a sua: $sha)"
+        # the same code in a default.xex written differently (decrypted or decompressed by a download site; reports
+        # 868, 968, 969, 996, 1120, 1162): the decoded image is the port's, so the translation is the same and the
+        # runtime loads that file as it is (it reads every XEX2 format)
+        if (-not ($JOGO['sha1_imagem'] -and $script:SHA1_IMAGEM_LIDA -eq $JOGO['sha1_imagem'])) {
+            Remove-Item $lido -ErrorAction SilentlyContinue
+            throw "este jogo não é a versão do port ($($JOGO['versao']), default.xex SHA-1 $($JOGO['sha1_xex']); a sua: $sha)"
+        }
+        Msg "o default.xex desta cópia foi regravado, mas o código é o mesmo da versão do port: aceito"
     }
     Move-Item -Force $lido $xex
     Set-Content -Path (Join-Path $OUT 'iso.txt') -Value $Iso -Encoding UTF8
