@@ -41,12 +41,12 @@ foreach ($linha in Get-Content (Join-Path $R 'config\jogo.txt') -Encoding UTF8) 
     if ($linha -match '^\s*([a-z0-9_]+)\s*=\s*(.*?)\s*$') { $JOGO[$Matches[1]] = $Matches[2] }
 }
 # the tools, pinned
-# the Otavix Engine 360 1.0.4 (the runtime, the translator and their headers and libraries, in the same layout as the
+# the Otavix Engine 360 1.0.5 (the runtime, the translator and their headers and libraries, in the same layout as the
 # ReXGlue SDK it started from); its binaries come from the launcher's server only
-$SDK_VERSAO = 'otx-1.0.4'
+$SDK_VERSAO = 'otx-1.0.5'
 $SDK_URLS = @(
-    'https://otavix-launcher.otavix-launcher-servidor.workers.dev/v1/arquivos/releases/otavix010/otavix-engine-360/v1.0.4/otavix-engine-360-1.0.4-win-amd64.zip')
-$SDK_SHA256 = '12bfa3a1f8e3f64f70b6ea7675f06ec251997c0c3cec3d9f62680c653cc4d157'
+    'https://otavix-launcher.otavix-launcher-servidor.workers.dev/v1/arquivos/releases/otavix010/otavix-engine-360/v1.0.5/otavix-engine-360-1.0.5-win-amd64.zip')
+$SDK_SHA256 = 'fc07f67adb145bc36fa6d26a699b69e1f8cbd149ee07c48cc4aca54fc3e0320a'
 $LLVM_VERSAO = '23.1.3'
 $LLVM_URL = "https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_VERSAO/clang%2Bllvm-$LLVM_VERSAO-x86_64-pc-windows-msvc.tar.zst"
 $LLVM_SHA256 = '7e69dc07a4536b79ff24a651a2611990bf8eaab17ea560f1092707c4f31ba01d'
@@ -443,6 +443,16 @@ Etapa 2 '2_jogo' {
     Ler-Xex $Iso $lido
     $sha = (Get-FileHash $lido -Algorithm SHA1).Hash.ToLower()
     if ($sha -ne $JOGO['sha1_xex']) {
+        # the disc of another port's game picked by mistake (report 1266: the Saints Row image in DiRT 2's port):
+        # named, with what to pick instead
+        $outros = @{ 'bcaec56eabad135071ee879b4bbcc6aa1e3362b8' = "Asura's Wrath"
+                     '98bff97ab205fc9893bf49e8c79b26711f6b18db' = "Dante's Inferno"
+                     'cdcbe29702fbf18e3e63002096d94d081cbf488f' = 'DiRT 2'
+                     'c2646093ff3926141fcf4fd630e876873d1caece' = 'Saints Row' }
+        if ($outros.ContainsKey($sha)) {
+            Remove-Item $lido -ErrorAction SilentlyContinue
+            throw "a .iso escolhida é do jogo $($outros[$sha]), não do $($JOGO['titulo']). Escolha a .iso do $($JOGO['titulo']) ($($JOGO['versao'])); a que foi escolhida serve no port do $($outros[$sha])."
+        }
         # what this default.xex is, in the step's log (and so in a report): another edition, or the same game re-encoded
         $script:SHA1_IMAGEM_LIDA = $null
         try { foreach ($l in (Descrever-Xex $lido)) { Anotar $script:LOG "xex: $l"; Msg "xex: $l" } }
