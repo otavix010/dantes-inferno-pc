@@ -107,15 +107,15 @@ Teclas padrão:
 | Analógico esquerdo ← (andar) | A |
 | Analógico esquerdo → (andar) | D |
 | A (pular) | Espaço / Enter |
-| B (cruz sagrada) | E / Backspace |
+| B (ataque da cruz) | E / Backspace |
 | X (ataque leve) | Mouse 1 / J |
 | Y (ataque forte) | Mouse 2 / K |
-| LB (magias) | Q |
-| RB | R |
+| LB (usar magia) | Q |
+| RB (interagir) | R |
 | LT (defender) | Shift esquerdo |
 | RT (agarrar) | F |
-| Start (pausa) | Esc |
-| Back | Tab |
+| Start (menu do sistema) | Esc |
+| Back (opções) | Tab |
 | Direcional ↑ | ↑ |
 | Direcional ↓ | ↓ |
 | Direcional ← | ← |
