@@ -4,6 +4,14 @@ O Otavix Launcher mostra este arquivo na página "Novidades" do jogo. Cada atual
 "## <data> · <versão>" e o texto em português (### pt), inglês (### en) e, quando houver, espanhol (### es).
 As mais novas ficam em cima.
 
+## 19/11/2026 · gerador
+### pt
+- **Gerador:** a compilação não para mais com "build.ninja still dirty" quando os arquivos da engine chegam com data no futuro (acontecia por algumas horas depois de cada atualização, em PCs com fuso horário a oeste do Brasil).
+### en
+- **Generator:** the build no longer stops with "build.ninja still dirty" when the engine's files arrive dated in the future (it happened for a few hours after each update, on PCs in time zones west of Brazil).
+### es
+- **Generador:** la compilación ya no se detiene con "build.ninja still dirty" cuando los archivos de la engine llegan con fecha en el futuro (pasaba durante algunas horas después de cada actualización, en PCs con huso horario al oeste de Brasil).
+
 ## 18/11/2026 · engine 1.0.8
 ### pt
 - **Teclado e mouse:** o jogo agora aceita teclado e mouse junto com o controle (ou sem ele), com o movimento do mouse no analógico direito e os botões dele no mapa de teclas. As teclas padrão estão na seção Teclado e mouse do README; para trocá-las, desligar o teclado ou o mouse e ajustar a sensibilidade, use Opções avançadas → Controles na versão mais nova do launcher.
