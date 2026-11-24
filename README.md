@@ -189,6 +189,12 @@ Ficam em `dantesinferno.toml` ao lado do executável, ou no arquivo indicado pel
 
 Para desenvolver: `build.cmd` compila; `scripts/rodar.py` roda numa janela com prints, o fps de cada segundo e um controle roteirizado (`PORT_PAD`; para começar um jogo novo: `--pad 26:START,35-180@4:A`); `scripts/tecla.py` aperta botões no jogo em execução; `scripts/varrer_ponteiros.py` e `scripts/desmontar.py` ajudam a achar funções.
 
+## Como é feito
+
+**Como é feito:** o Otavix é um projeto de fãs, sem fins lucrativos, desenvolvido com a ajuda de assistentes de IA (Claude, da Anthropic), que escrevem e testam boa parte do código sob a direção do autor. Cada versão passa por testes antes de ser publicada, e os reports dos jogadores entram no mesmo ciclo.
+
+**How it is made:** Otavix is a non-profit fan project developed with the help of AI assistants (Anthropic's Claude), which write and test much of the code under the author's direction. Every release is tested before it is published, and player reports feed the same loop.
+
 ## Créditos
 
 - [ReXGlue SDK](https://github.com/rexglue/rexglue-sdk): recompilador estático e runtime de Xbox 360 (BSD-3).
