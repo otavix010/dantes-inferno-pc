@@ -43,7 +43,7 @@ O jeito mais fácil de jogar é pelo [Otavix Launcher](https://github.com/otavix
 | | Xbox 360 | Port |
 |--|--|--|
 | Taxa de quadros | 60 fps | **60** ou **120** fps (quadros reais; a interface fica a 60) |
-| Resolução interna | 720p | 720p, **1440p** ou 4K |
+| Resolução interna | 720p | **720p**, 1440p ou 4K |
 | Ampliação para a tela | — | AMD FSR 1, AMD CAS, FSR 3 temporal (experimental) ou bilinear, com nitidez ajustável |
 | Anti-aliasing | o do jogo | o do jogo, mais FXAA opcional |
 | Filtro anisotrópico | o do jogo | até 16x |
@@ -153,7 +153,7 @@ Ficam em `dantesinferno.toml` ao lado do executável, ou no arquivo indicado pel
 | Opção | Valores | Padrão |
 |--|--|--|
 | `fps` | 60, 120 | 60 |
-| `resolution_scale` | 1 (720p), 2 (1440p), 3 (4K) | 2 |
+| `resolution_scale` | 1 (720p), 2 (1440p), 3 (4K) | 1 pelo launcher (preset Equilibrado · 720p); 2 sem o launcher |
 | `filtro` | `fsr`, `cas`, `fsr3` (temporal, experimental), `bilinear` | `fsr` |
 | `nitidez` | 0 a 100 | 70 |
 | `swap_post_effect` | `none`, `fxaa`, `fxaa_extreme` | `none` |
